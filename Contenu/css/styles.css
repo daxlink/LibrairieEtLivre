@@ -1,0 +1,15 @@
+body{
+    background-color: #1a1a1a;
+}
+#global{
+    border: 2px solid black;
+    margin: 10px 200px;
+    padding: 10px;
+    background-color: #a50000;
+    color: #FFFFFF;
+}
+
+header, h2, a{
+    color: #000000;
+}
+
