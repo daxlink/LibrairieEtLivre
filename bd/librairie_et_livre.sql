@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 27 mai 2020 à 22:55
+-- Généré le : lun. 01 juin 2020 à 07:17
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.3
 
@@ -42,6 +42,8 @@ INSERT INTO `livres` (`isbn`, `titre`, `annéePublication`) VALUES
 (1234567890123, 'Hunter x Hunter - 1', 2000),
 (9780340509111, 'The Dark Half', 1989),
 (9782811206918, 'Ravens - 1 - AubeMort', 1999),
+(9782845994058, 'king of Bandit Jing - 5', 2001),
+(9782845994249, 'King of Bandit Jing - 6', 2001),
 (9782894354308, 'Luna - 1 - La cité maudite', 2009);
 
 -- --------------------------------------------------------
@@ -64,9 +66,15 @@ CREATE TABLE `utilisateurdemandes` (
 --
 
 INSERT INTO `utilisateurdemandes` (`id`, `utilisateur_id`, `livre_isbn`, `date_demande`, `date_location`, `details`) VALUES
-(41, 1, 1234567890123, '2020-05-27', '2020-05-29', ''),
 (42, 2, 1234567890123, '2020-05-27', '2020-05-30', '3 semaine'),
-(43, 1, 1234567890123, '2020-05-27', '2020-09-15', '1 semaine');
+(43, 1, 1234567890123, '2020-05-27', '2020-09-15', '1 semaine'),
+(48, 2, 1234567890123, '2020-05-28', '2020-06-06', ''),
+(50, 1, 1234567890123, '2020-05-31', '2020-06-04', 'essai1.1'),
+(51, 1, 1234567890123, '2020-05-31', '2020-06-04', 'essai1.1'),
+(52, 1, 1234567890123, '2020-05-31', '2020-06-04', 'essai1.1'),
+(59, 1, 1234567890123, '2020-05-31', '2020-06-04', '2 semaines'),
+(62, 1, 9782845994058, '2020-05-31', '2020-06-04', 'REUSSI'),
+(63, 1, 9782845994058, '2020-05-31', '2020-05-20', 'réussi');
 
 -- --------------------------------------------------------
 
@@ -80,16 +88,20 @@ CREATE TABLE `utilisateurs` (
   `prénom` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `téléphone` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `identifiant` varchar(255) NOT NULL,
+  `mot_de_passe` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`id`, `genre`, `prénom`, `nom`, `téléphone`, `email`) VALUES
-(1, 'm', 'Alexis', 'Archambault', '524-456-6789', 'alexis@archambault.com'),
-(2, 'm', 'André', 'Pilon', '524-687-4364', 'Andre@Pilon.com');
+INSERT INTO `utilisateurs` (`id`, `genre`, `prénom`, `nom`, `téléphone`, `email`, `identifiant`, `mot_de_passe`) VALUES
+(1, 'm', 'Alexis', 'Archambault', '524-456-6789', 'alexis@archambault.com', 'AlexisA', 'ArchambaultA'),
+(2, 'm', 'André', 'Pilon', '524-687-4364', 'Andre@Pilon.com', 'AndreP', 'PilonA'),
+(3, '', 'admin', 'admin', '', '', 'Admin', 'AdminMDP'),
+(4, 'f', 'Anabelle', 'Laroche', '514-765-2466', 'Anabelle@laroche.com', 'anabanana', 'ananas');
 
 --
 -- Index pour les tables déchargées
@@ -113,7 +125,8 @@ ALTER TABLE `utilisateurdemandes`
 -- Index pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `identifiant` (`identifiant`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -123,13 +136,13 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `utilisateurdemandes`
 --
 ALTER TABLE `utilisateurdemandes`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées

@@ -9,7 +9,7 @@
     <body>
         <div id="global">
             <header>
-                <a href="index.php"><h1 id="titre">Bibliothèque de Terrebonne</h1></a>
+                <a href="<?= $utilisateur != '' ? ($utilisateur == 'Admin' ? 'AdminLivres/' : 'ClientLivres/') : 'index.php'; ?>"><h1 id="titre">Bibliothèque de Terrebonne</h1></a>
                 <a href="<?= $utilisateur != '' ? ($utilisateur == 'Admin' ? 'Admin' : 'Client') : ''; ?>UtilisateurDemandes">
                     <h4>Afficher toutes les demandes des livres</h4>
                 </a>
